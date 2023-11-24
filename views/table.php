@@ -9,7 +9,7 @@
 </head>
 <body>
     
-<div class="container-fluid row" style="background: rgb(255,255,255);">
+<div class="container-fluid" style="background: rgb(255,255,255);">
     <form class="col-4 pt-4" action="/" >
     <h2 class="text-center text-secondary">Nuevo registro</h2>
         /*codigo para generar el formulario segun los datos de la tabla*/
@@ -37,11 +37,10 @@
             <input type="text" class="form-control" id="tableName">
         <div>
         <div class="mt-2">
-            <button type="submit" class="btn btn-primary">Añadir</button>
+            <button type="submit" class="btn btn-success">Agregar</button>
         <div>
     </form>
     <div class="col-8 pt-4">
-    /*codigo para generar la tabla segun los datos de la base de datos*/
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
@@ -52,23 +51,34 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>fat</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>twitter</td>
-                </tr>
+            /*codigo para generar la tabla segun los datos de la base de datos*/
+            <?php 
+                include_once("../model/connection.php");
+                Conexion::ConexionBD();
+                $sql = $conexion -> query("select * from clientes");
+                while($datos = $sql->fetch_object()){
+                    ?>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>twitter</td>
+                    </tr>
+                <?php
+                }
+            ?>
+                
             </tbody>
     </table>
     <div>
