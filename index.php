@@ -11,25 +11,25 @@
     
 <div class="container-fluid row " style="background: rgb(255,255,255);">
     <form class="col-4 pt-4" action="/" >
-    <h2 class="text-center text-secondary">Crear o Eliminar Tabla</h2>
+    <h2 class="text-center text-secondary">Create or Delete Table</h2>
         <div class="mb-3">
-            <label for="tableName" class="form-label">Nombre de la tabla</label>
+            <label for="tableName" class="form-label">Table Name</label>
             <input type="text" class="form-control" id="tableName">
         <div>
         <div class="mt-2">
-            <button type="submit" class="btn btn-primary">Crear</button>
-            <button type="submit" class="btn btn-danger">Borrar</button>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
         <div>
     </form>
     <div class="col-8 pt-4">
         <form action="/">
-            <h2 class="text-center text-secondary">Consultar Tabla</h2>
+            <h2 class="text-center text-secondary">Consult Table</h2>
             <div class="mb-3">
-                <label for="tableName" class="form-label">Nombre de tabla</label>
+                <label for="tableName" class="form-label">Table Name</label>
                 <input type="text" class="form-control" id="tableName">
             <div>
             <div class="mt-2">
-                <button type="submit" class="btn btn-info">Consultar</button>
+                <button type="submit" class="btn btn-info">Consult</button>
             <div>
         </form>
     <div>

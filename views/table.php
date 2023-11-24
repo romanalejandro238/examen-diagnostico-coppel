@@ -11,33 +11,30 @@
     
 <div class="container-fluid" style="background: rgb(255,255,255);">
     <form class="col-4 pt-4" action="/" >
-    <h2 class="text-center text-secondary">Nuevo registro</h2>
-        /*codigo para generar el formulario segun los datos de la tabla*/
-        <div class="mb-3">
-            <label for="ClientID" class="form-label">Cliente</label>
-            <input type="text" class="form-control" id="ClientID">
-        <div>
-        <div class="mb-3">
-            <label for="ClientFirstName" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="ClientFirstName">
-        <div>
-        <div class="mb-3">
-            <label for="ClientFatherLastName" class="form-label">Apellido Paterno</label>
-            <input type="text" class="form-control" id="ClientFatherLastName">
-        <div>
-        <div class="mb-3">
-            <label for="ClientMotherLastName" class="form-label">Apellido Materno</label>
-            <input type="text" class="form-control" id="ClientMotherLastName">
+    <h2 class="text-center text-secondary">New Insert</h2>
+
+    <?php 
+                include_once("../model/connection.php");
+                $query = "select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'clientes' order by ORDINAL_POSITION";
+                $sql = pg_query(Conexion::ConexionBD(),$query);
+                while($data = pg_fetch_object($sql)){
+                    ?>
+                        <div class="mb-3">
+                            <label for=<?=$data->column_name?> class="form-label"><?=$data->column_name?></label>
+                            <input type="text" class="form-control" id=<?=$data->column_name?>>
+                        <div>
+                <?php
+                }
+            ?>
+        <div class="mt-2">
+            <button type="submit" class="btn btn-primary">Insert</button>
         <div>
         <div class="mt-2">
-            <button type="submit" class="btn btn-primary">Insertar</button>
-        <div>
-        <div class="mt-2">
-            <label for="tableName" class="form-label">Nombre de columna</label>
+            <label for="tableName" class="form-label">Column Name</label>
             <input type="text" class="form-control" id="tableName">
         <div>
         <div class="mt-2">
-            <button type="submit" class="btn btn-success">Agregar</button>
+            <button type="submit" class="btn btn-success">Add</button>
         <div>
     </form>
     <div class="col-8 pt-4">
@@ -45,35 +42,23 @@
             <thead>
                 <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido Paterno</th>
-                <th scope="col">Apellido Materno</th>
+                <th scope="col">Name</th>
+                <th scope="col">Father Last Name</th>
+                <th scope="col">Mother Last Name</th>
                 </tr>
             </thead>
             <tbody>
-            /*codigo para generar la tabla segun los datos de la base de datos*/
             <?php 
                 include_once("../model/connection.php");
-                Conexion::ConexionBD();
-                $sql = $conexion -> query("select * from clientes");
-                while($datos = $sql->fetch_object()){
+                $query = "select * from clientes";
+                $sql = pg_query(Conexion::ConexionBD(),$query);
+                while($data = pg_fetch_object($sql)){
                     ?>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>twitter</td>
+                        <td><?=$data->ClientID?></th>
+                        <td><?=$data->ClientFirstName?></td>
+                        <td><?=$data->ClientFatherLastName?></td>
+                        <td><?=$data->ClientMotherLastName?></td>
                     </tr>
                 <?php
                 }
