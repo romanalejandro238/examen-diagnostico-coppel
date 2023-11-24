@@ -10,15 +10,19 @@
 <body>
     
 <div class="container-fluid row " style="background: rgb(255,255,255);">
-    <form class="col-4 pt-4" action="/" >
+    <form class="col-4 pt-4" Method="POST" >
     <h2 class="text-center text-secondary">Create or Delete Table</h2>
+
+        <?php
+            include_once "../controller/create.php"
+        ?>
         <div class="mb-3">
             <label for="tableName" class="form-label">Table Name</label>
-            <input type="text" class="form-control" id="tableName">
+            <input type="text" class="form-control" name="tableName">
         <div>
         <div class="mt-2">
-            <button type="submit" class="btn btn-primary">Create</button>
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-primary" name="btnCreate" value="ok">Create</button>
+            <button type="submit" class="btn btn-danger" name="btnDelete" value="ok">Delete</button>
         <div>
     </form>
     <div class="col-8 pt-4">

@@ -14,8 +14,8 @@
         <h2 class="text-center text-secondary">New Insert</h2>
 
         <?php 
-            include "../controller/create.php";
-            include "../controller/read.php";
+            include_once "../controller/create.php";
+            include_once "../controller/read.php";
             $query = ReadClient::readColumns();      
             while($data = pg_fetch_object($query)){
                 ?>
@@ -31,12 +31,15 @@
         <div>
     </form>
     <form action="" method="POST">
+        <?php
+            include_once "../controller/update.php";
+        ?>
         <div class="mt-2">
             <label for="columnName" class="form-label">Column Name</label>
-            <input type="text" class="form-control" id="columnName">
+            <input type="text" class="form-control" name="columnName">
         <div>
         <div class="mt-2">
-            <button type="submit" class="btn btn-success">Add</button>
+            <button type="submit" class="btn btn-success" value="ok" name="btnAdd">Add</button>
         <div>
     </form>
         
@@ -44,28 +47,32 @@
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Father Last Name</th>
-                <th scope="col">Mother Last Name</th>
+                <?php
+                $query = ReadClient::readColumns();
+                while($data = pg_fetch_object($query)){?>
+                    <th scope="col"><?=$data->column_name?></th>
+                <?php
+                }
+                ?>
                 </tr>
+                
             </thead>
             <tbody>
             <?php 
-                include_once("../controller/read.php");
-                $sql = ReadClient::readClients();
-                while($data = pg_fetch_object($sql)){
-                    ?>
+                $sql = ReadClient::readTable("clientes");
+                while($data = pg_fetch_object($sql)){?>
                     <tr>
-                        <td><?=$data->ClientID?></th>
-                        <td><?=$data->ClientFirstName?></td>
-                        <td><?=$data->ClientFatherLastName?></td>
-                        <td><?=$data->ClientMotherLastName?></td>
+                        <?php
+                            foreach($data as $key => $value){?>
+                                <td><?=$value?></th>
+                            <?php
+                            }
+                            ?>
                     </tr>
+                
                 <?php
                 }
-            ?>
-                
+                ?>
             </tbody>
     </table>
     <div>

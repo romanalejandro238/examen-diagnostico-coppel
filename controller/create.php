@@ -24,9 +24,9 @@ if(!empty($_POST["btnInsert"])){
         }
         $query = $query . $values . ");";
 
-        include "../model/connection.php";
+        include_once "../model/connection.php";
         try{
-            $sql = pg_query(Conexion::ConexionBD(),$query);
+            pg_query(Conexion::ConexionBD(),$query);
         }catch(PGException $exp){
             echo $exp;
         }
