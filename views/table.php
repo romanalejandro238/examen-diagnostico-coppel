@@ -49,9 +49,8 @@
             </thead>
             <tbody>
             <?php 
-                include_once("../model/connection.php");
-                $query = "select * from clientes";
-                $sql = pg_query(Conexion::ConexionBD(),$query);
+                include_once("../controller/read.php");
+                $sql = ReadClient::readClients();
                 while($data = pg_fetch_object($sql)){
                     ?>
                     <tr>
