@@ -15,6 +15,7 @@
 
         <?php
             include_once "controller/create.php";
+            include_once "controller/delete.php";
         ?>
         <div class="mb-3">
             <label for="tableName" class="form-label">Table Name</label>
