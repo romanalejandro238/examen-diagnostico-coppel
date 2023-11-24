@@ -14,7 +14,7 @@
     <h2 class="text-center text-secondary">Create or Delete Table</h2>
 
         <?php
-            include_once "../controller/create.php"
+            include_once "controller/create.php";
         ?>
         <div class="mb-3">
             <label for="tableName" class="form-label">Table Name</label>
@@ -30,10 +30,10 @@
             <h2 class="text-center text-secondary">Consult Table</h2>
             <div class="mb-3">
                 <label for="tableName" class="form-label">Table Name</label>
-                <input type="text" class="form-control" id="tableName">
+                <input type="text" class="form-control" name="tableName">
             <div>
             <div class="mt-2">
-                <button type="submit" class="btn btn-info">Consult</button>
+            <a href="views/table.php" class="btn btn-primary" name="btnConsult" value="ok">Consult<a>
             <div>
         </form>
     <div>
