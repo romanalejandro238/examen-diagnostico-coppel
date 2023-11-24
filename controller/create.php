@@ -3,7 +3,7 @@
 
 
 if(!empty($_POST["btnInsert"])){ 
-    if(count(array_filter($_POST))==count($_POST)){
+    if(count(array_filter($_POST))!=count($_POST)){
         $query = "INSERT INTO clientes VALUES (";
         $values="";
         foreach($_POST as $key => $value){

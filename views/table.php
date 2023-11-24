@@ -16,7 +16,9 @@
         <?php 
             include_once "../controller/create.php";
             include_once "../controller/read.php";
-            $query = ReadClient::readColumns();      
+        
+            $tableName = $_POST['tableConsultName'];
+            $query = ReadClient::readColumns($tableName);      
             while($data = pg_fetch_object($query)){
                 ?>
                     <div class="mb-3">
@@ -30,9 +32,11 @@
             <button type="submit" class="btn btn-primary" value="ok" name="btnInsert">Insert</button>
         <div>
     </form>
-    <form action="" method="POST">
+    
+    
+    <form action="../controller/update.php?tableName=<?=$tableName?>" method="POST">
         <?php
-            include_once "../controller/update.php";
+        include_once "../controller/update.php";
         ?>
         <div class="mt-2">
             <label for="columnName" class="form-label">Column Name</label>
@@ -42,13 +46,15 @@
             <button type="submit" class="btn btn-success" value="ok" name="btnAdd">Add</button>
         <div>
     </form>
+
+
         
     <div class="col-8 pt-4">
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
                 <?php
-                $query = ReadClient::readColumns();
+                $query = ReadClient::readColumns($tableName);
                 while($data = pg_fetch_object($query)){?>
                     <th scope="col"><?=$data->column_name?></th>
                 <?php
@@ -59,7 +65,7 @@
             </thead>
             <tbody>
             <?php 
-                $sql = ReadClient::readTable("clientes");
+                $sql = ReadClient::readTable($tableName);
                 while($data = pg_fetch_object($sql)){?>
                     <tr>
                         <?php

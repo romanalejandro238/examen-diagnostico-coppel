@@ -14,9 +14,9 @@ class ReadClient {
         return $sql;
     }
 
-    static function readColumns(){
+    static function readColumns($tableName){
         include_once "../model/connection.php";
-        $query = "select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'clientes' order by ORDINAL_POSITION";
+        $query = "select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = '" . $tableName . "' order by ORDINAL_POSITION;";
         try{
             $sql = pg_query(Conexion::ConexionBD(),$query);
         }catch(PGException $exp){
@@ -25,6 +25,7 @@ class ReadClient {
         
         return $sql;
     }
+
 
 }
 ?>

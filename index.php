@@ -10,7 +10,7 @@
 <body>
     
 <div class="container-fluid row " style="background: rgb(255,255,255);">
-    <form class="col-4 pt-4" Method="POST" >
+    <form class="col-4 pt-4" method="POST" >
     <h2 class="text-center text-secondary">Create or Delete Table</h2>
 
         <?php
@@ -27,14 +27,14 @@
         <div>
     </form>
     <div class="col-8 pt-4">
-        <form action="/">
+        <form action="views/table.php" method="POST">
             <h2 class="text-center text-secondary">Consult Table</h2>
             <div class="mb-3">
-                <label for="tableName" class="form-label">Table Name</label>
-                <input type="text" class="form-control" name="tableName">
+                <label for="tableConsultName" class="form-label">Table Name</label>
+                <input type="text" class="form-control" name="tableConsultName">
             <div>
             <div class="mt-2">
-            <a href="views/table.php" class="btn btn-primary" name="btnConsult" value="ok">Consult<a>
+            <button type="submit" class="btn btn-primary">Consult</button>
             <div>
         </form>
     <div>
