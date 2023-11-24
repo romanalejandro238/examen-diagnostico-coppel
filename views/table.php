@@ -10,33 +10,36 @@
 <body>
     
 <div class="container-fluid" style="background: rgb(255,255,255);">
-    <form class="col-4 pt-4" action="/" >
-    <h2 class="text-center text-secondary">New Insert</h2>
+    <form class="col-4 pt-4" method="POST" >
+        <h2 class="text-center text-secondary">New Insert</h2>
 
-    <?php 
-                include_once("../model/connection.php");
-                $query = "select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'clientes' order by ORDINAL_POSITION";
-                $sql = pg_query(Conexion::ConexionBD(),$query);
-                while($data = pg_fetch_object($sql)){
-                    ?>
-                        <div class="mb-3">
-                            <label for=<?=$data->column_name?> class="form-label"><?=$data->column_name?></label>
-                            <input type="text" class="form-control" id=<?=$data->column_name?>>
-                        <div>
-                <?php
-                }
+        <?php 
+            include "../controller/create.php";
+            include "../controller/read.php";
+            $query = ReadClient::readColumns();      
+            while($data = pg_fetch_object($query)){
+                ?>
+                    <div class="mb-3">
+                        <label for=<?=$data->column_name?> class="form-label"><?=$data->column_name?></label>
+                        <input type="text" class="form-control" name=<?=$data->column_name?>>
+                    <div>
+            <?php
+            }
             ?>
         <div class="mt-2">
-            <button type="submit" class="btn btn-primary">Insert</button>
+            <button type="submit" class="btn btn-primary" value="ok" name="btnInsert">Insert</button>
         <div>
+    </form>
+    <form action="" method="POST">
         <div class="mt-2">
-            <label for="tableName" class="form-label">Column Name</label>
-            <input type="text" class="form-control" id="tableName">
+            <label for="columnName" class="form-label">Column Name</label>
+            <input type="text" class="form-control" id="columnName">
         <div>
         <div class="mt-2">
             <button type="submit" class="btn btn-success">Add</button>
         <div>
     </form>
+        
     <div class="col-8 pt-4">
         <table class="table table-striped table-hover table-bordered">
             <thead>
