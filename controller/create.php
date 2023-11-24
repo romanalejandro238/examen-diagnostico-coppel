@@ -1,13 +1,12 @@
 <?php
-
-
-
 if(!empty($_POST["btnInsert"])){ 
-    if(count(array_filter($_POST))!=count($_POST)){
-        $query = "INSERT INTO clientes VALUES (";
+    if(count(array_filter($_POST))==count($_POST)){
+
+        $query = "INSERT INTO " . $_GET["tableName"] . " VALUES (";
         $values="";
         foreach($_POST as $key => $value){
             if($key == "btnInsert") continue;
+            if($key == "tableName") continue;
             if(empty($values)){
                 if(is_string($value)){
                     $values = "'" . $value . "'";
@@ -27,6 +26,8 @@ if(!empty($_POST["btnInsert"])){
         include_once "../model/connection.php";
         try{
             pg_query(Conexion::ConexionBD(),$query);
+            header("Location:../views/table.php?tableName=".$_GET["tableName"]);
+            die();
         }catch(PGException $exp){
             echo $exp;
         }

@@ -8,17 +8,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    
+<nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../index.php">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+        </svg>
+      INDEX
+    </a>
+  </div>
+</nav>   
 <div class="container-fluid" style="background: rgb(255,255,255);">
-    <form class="col-4 pt-4" method="POST" >
-        <h2 class="text-center text-secondary">New Insert</h2>
 
-        <?php 
-            include_once "../controller/create.php";
-            include_once "../controller/read.php";
-        
-            $tableName = $_POST['tableConsultName'];
-            $query = ReadClient::readColumns($tableName);      
+    <?php 
+        include_once "../controller/create.php";
+        include_once "../controller/read.php";
+
+        $tableName = $_GET['tableName'];
+        $query = ReadClient::readColumns($tableName);
+    ?> 
+    <form action="../controller/create.php?tableName=<?=$tableName?>" class="col-4 pt-4" method="POST">
+        <h2 class="text-center">New Insert</h2>
+            <?php      
             while($data = pg_fetch_object($query)){
                 ?>
                     <div class="mb-3">

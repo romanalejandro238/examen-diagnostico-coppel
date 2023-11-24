@@ -5,7 +5,7 @@ if(!empty($_POST["btnAdd"])){
 
 
     if(count(array_filter($_POST))==count($_POST)){
-        
+
         $query = "ALTER TABLE " . $_GET["tableName"] . " ADD COLUMN ";
         $values = $_POST["columnName"];
 
@@ -14,6 +14,8 @@ if(!empty($_POST["btnAdd"])){
             include_once "../model/connection.php";
             try{
                 pg_query(Conexion::ConexionBD(),$query);
+                header("Location:../views/table.php?tableName=".$_GET["tableName"]);
+                die();
             }catch(PGException $exp){
                 echo $exp;
             }
